@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import {  Image, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import Input from '../../components/Input';
@@ -39,6 +39,7 @@ const SignIn: React.FC = () => {
             <Input  name="email" icon="mail" placeholder="E-mail" />
 
             <Input  name="password" icon="lock" placeholder="Senha" />
+
 
             <Button onPress={() => {}}>Entrar</Button>
 
