@@ -8,12 +8,13 @@ interface InputProps extends TextInputProps {
   icon: string;
 }
 
-export const Input: React.FC<InputProps> = ({ name, icon, ...rest}) => (
+ const Input: React.FC<InputProps> = ({ name, icon, ...rest}) => (
 
   <Container>
     <Icon name="mail" size={20} color="#666360" />
     <TextInput placeholderTextColor="#666360" {...rest} />
   </Container>
+  
 );
 
 export default Input;
