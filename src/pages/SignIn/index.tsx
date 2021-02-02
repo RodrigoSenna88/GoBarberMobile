@@ -46,13 +46,13 @@ const SignIn: React.FC = () => {
               <Title>Faça seu logon</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignIn}>
+            <Form ref={formRef} onSubmit={handleSignIn} style={{ width: '100%' }} >
             <Input  name="email" icon="mail" placeholder="E-mail" />
 
             <Input  name="password" icon="lock" placeholder="Senha" />
 
 
-            <Button onPress={() => {formRef.current?.submitForm()}}>Entrar</Button>
+            <Button onPress={() => formRef.current?.submitForm()}>Entrar</Button>
             </Form>
 
             <ForgotPassword onPress={() => {}}>

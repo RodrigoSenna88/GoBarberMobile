@@ -35,7 +35,7 @@ const SignUp: React.FC = () => {
             <View>
               <Title>Crie sua conta</Title>
             </View>
-            <Form  ref={formRef} onSubmit={() => {}} >
+            <Form  ref={formRef} onSubmit={(data) => {console.log(data);}} style={{ width: '100%' }} >
             <Input  name="name" icon="user" placeholder="Nome" />
 
             <Input  name="email" icon="mail" placeholder="E-mail" />
@@ -45,7 +45,6 @@ const SignUp: React.FC = () => {
 
             <Button onPress={() => {formRef.current?.submitForm()}}>Entrar</Button>
             </Form>
-
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>

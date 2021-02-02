@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { TextInputProps,  TextInput} from 'react-native';
 import { useField } from '@unform/core';
 
-
 import { Container, Icon } from './styles';
 
 interface InputProps extends TextInputProps {
@@ -16,7 +15,7 @@ interface InputValueReference {
 
 
  const Input: React.FC<InputProps> = ({ name, icon, ...rest}) => {
-  const inputElementRef = useRef(null);
+  const inputElementRef = useRef<any>(null);
 
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
@@ -28,7 +27,7 @@ interface InputValueReference {
       path: 'value',
       setValue(ref: any, value) {
         inputValueRef.current.value = value;
-        inputElementRef.current.setNativeProps({ text: value});
+        inputElementRef.current.setNativeProps({ text: value });
       },
       clearValue() {
         inputValueRef.current.value = '';
@@ -40,11 +39,12 @@ interface InputValueReference {
   return (
     <Container>
       <Icon name={icon} size={20} color="#666360" />
+
       <TextInput
         ref={inputElementRef}
         placeholderTextColor="#666360"
         defaultValue={defaultValue}
-        onChangeText={value => {
+        onChangeText={(value) => {
           inputValueRef.current.value = value;
         }}
         {...rest}
