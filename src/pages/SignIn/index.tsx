@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
               <Title>Faça seu logon</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignIn} style={{ width: '100%'}}>
+            <Form ref={formRef} onSubmit={handleSignIn} style={{ width: '100%' }} >
             <Input
               autoCorrect={false}
               autoCapitalize="none"

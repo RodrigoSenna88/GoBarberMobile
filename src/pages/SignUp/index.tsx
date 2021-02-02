@@ -19,6 +19,7 @@ import Button from '../../components/Button';
 import logoImg from '../../assets/logo.png';
 
 import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
+import { color } from 'react-native-reanimated';
 
 
 const SignUp: React.FC = () => {
