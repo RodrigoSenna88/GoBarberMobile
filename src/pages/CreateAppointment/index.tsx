@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-
-import { useAuth } from '../../hooks/auth';
-
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
+ import DateTimePicker from '@react-native-community/datetimepicker';
+ import { Platform } from 'react-native';
+
+import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
 import {
@@ -17,6 +18,10 @@ import {
   ProviderContainer,
   ProviderAvatar,
   ProviderName,
+  Calendar,
+  Title,
+  OpenDatePickerButton,
+  OpenDatePickerButtonText,
  } from './styles';
 
 interface RoutesParams {
@@ -36,6 +41,8 @@ const CreateAppointment: React.FC = () => {
 
   const routeParams = route.params as RoutesParams;
 
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate ] = useState(new Date());
   const [providers, setProviders] = useState<Provider[]>([]);
   const [selectedProvider, setSelectedProvider] = useState(routeParams.providerId);
 
@@ -52,6 +59,20 @@ const CreateAppointment: React.FC = () => {
 
   const handleSelectProvider = useCallback((providerId: string) => {
     setSelectedProvider(providerId);
+  }, []);
+
+  const handleToggleDatePicker = useCallback(() => {
+    setShowDatePicker(state => !state);
+  }, []);
+
+  const handleDateChange = useCallback((event: any, date: Date | undefined) => {
+    if(Platform.OS === 'android') {
+      setShowDatePicker(false);
+    }
+
+    if (date) {
+      setSelectedDate(date);
+    }
   }, []);
 
   return (
@@ -71,7 +92,7 @@ const CreateAppointment: React.FC = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         data={providers}
-        keyExtractor={provider => provider.id}
+        keyExtractor={(provider) => provider.id}
         renderItem={({ item: provider }) => (
           <ProviderContainer
           onPress={() => handleSelectProvider(provider.id) }
@@ -85,6 +106,22 @@ const CreateAppointment: React.FC = () => {
         )}
       />
       </ProvidersListContainer>
+
+      <Calendar>
+        <Title>Escolha a data</Title>
+
+        <OpenDatePickerButton onPress={handleToggleDatePicker}>
+          <OpenDatePickerButtonText>Selecionar outra data</OpenDatePickerButtonText>
+        </OpenDatePickerButton>
+
+        {showDatePicker && (<DateTimePicker
+          mode="date"
+          display="calendar"
+          onChange={handleDateChange}
+          value={selectedDate}
+        />)}
+      </Calendar>
+
     </Container>
   );
 };
