@@ -33,7 +33,7 @@ import {
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
-  const { signOut, user } = useAuth();
+  const { user } = useAuth();
   const { navigate } =useNavigation()
 
   useEffect(() => {
@@ -43,10 +43,9 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const navigateToProfile = useCallback(() => {
-    // navigate('Profile');
+    navigate('Profile');
 
-    signOut()
-  }, [signOut]);
+  }, [navigate]);
 
   const navigateToCreateAppointment= useCallback((providerId: string) => {
     navigate('CreateAppointment', { providerId });
