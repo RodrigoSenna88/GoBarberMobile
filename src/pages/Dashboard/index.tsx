@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import Button from '../../components/Button';
+
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -33,7 +35,7 @@ import {
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { navigate } =useNavigation()
 
   useEffect(() => {
@@ -50,6 +52,11 @@ const Dashboard: React.FC = () => {
   const navigateToCreateAppointment= useCallback((providerId: string) => {
     navigate('CreateAppointment', { providerId });
   }, [navigate]);
+
+  const exitToApp = useCallback(() => {
+    signOut();
+
+  }, [signOut]);
 
   return (
     <Container >
@@ -92,6 +99,10 @@ const Dashboard: React.FC = () => {
         </ProviderContainer>
         )}
      />
+
+        <Button onPress={exitToApp}>
+              Sair da aplicação
+        </Button>
     </Container>
   );
 };
