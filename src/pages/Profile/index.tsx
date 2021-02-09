@@ -154,7 +154,7 @@ const Profile: React.FC = () => {
       const data = new FormData();
 
       data.append('avatar', {
-        type: 'image/jpeg',
+        type: 'image/jpg',
         name: `${user.id}.jpg`,
         uri: response.uri,
       });
