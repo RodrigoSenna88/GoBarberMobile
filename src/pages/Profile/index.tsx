@@ -1,6 +1,5 @@
 import React, { useRef, useCallback } from 'react';
 import {
-  Image,
   View,
   ScrollView,
   KeyboardAvoidingView,
@@ -148,7 +147,7 @@ const Profile: React.FC = () => {
       }
 
       if (response.error) {
-        Alert.alert('Erro ao atualizar seu avatar');
+        Alert.alert('Erro ao atualizar seu avatar.');
         return;
       }
 
@@ -156,7 +155,7 @@ const Profile: React.FC = () => {
 
       data.append('avatar', {
         type: 'image/jpeg',
-        name: `${user.id}.jpeg`,
+        name: `${user.id}.jpg`,
         uri: response.uri,
       });
 
