@@ -70,11 +70,13 @@ const SignIn: React.FC = () => {
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
+
+          // console.log(err);
           const errors = getValidationsErrors(err);
 
           formRef.current?.setErrors(errors);
 
-          return;
+         return;
         }
 
         Alert.alert(
@@ -94,7 +96,7 @@ const SignIn: React.FC = () => {
       enabled
       >
         <ScrollView
-          keyboardShouldPersistTaps="handled"u
+          keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flex: 1 }}
         >
           <Container>

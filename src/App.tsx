@@ -1,15 +1,21 @@
 import 'react-native-gesture-handler';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, StatusBar} from 'react-native';
 
+import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppProvider from './hooks';
 
 import Routes from './routes';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
+  return (
   <NavigationContainer>
     <StatusBar barStyle='light-content' backgroundColor='#312e38' />
       <AppProvider>
@@ -18,6 +24,6 @@ const App: React.FC = () => (
         </View>
       </AppProvider>
   </ NavigationContainer>
-);
+)};
 
 export default App;
